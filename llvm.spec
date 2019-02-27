@@ -7,6 +7,7 @@ Group:		Development/Libraries
 License:	NCSA
 URL:		https://github.com/SXAuroraTSUBASAResearch/llvm
 Source0:	llvm-ve-%{version}.tar.gz
+Prefix:         /opt/nec/nosupport/llvm-%{version}
 
 # Building llvm requires gcc-5.1 or above, but it is sometime provided
 # as devtoolset-X, so we simply says gcc-c++ here.
@@ -52,8 +53,12 @@ make DEST=%{buildroot}/opt/nec/nosupport/llvm-%{version} installall
 %files
 %doc
 %defattr(-,root,root,-)
-/opt/nec/nosupport/llvm-%{version}/*
-
+/opt/nec/nosupport/llvm-%{version}/bin/*
+/opt/nec/nosupport/llvm-%{version}/include/*
+/opt/nec/nosupport/llvm-%{version}/lib/*
+/opt/nec/nosupport/llvm-%{version}/libexec/*
+/opt/nec/nosupport/llvm-%{version}/share/*
 
 %changelog
-
+* Wed Feb 27 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - %{version}-1
+- Initial release

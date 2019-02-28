@@ -60,5 +60,9 @@ make DEST=%{buildroot}/opt/nec/nosupport/llvm-%{version} installall
 /opt/nec/nosupport/llvm-%{version}/share/*
 
 %changelog
+* Wed Feb 27 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.2-1
+- Change to use devtoolset-4 instead of devtoolset-8 since latter cause
+  unrecognized relocation (0x2a) with RHEL/CentOS7 default ld (2.25)
+
 * Wed Feb 27 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.1-1
 - Initial release

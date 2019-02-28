@@ -1,7 +1,7 @@
 THIS_MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_TOP_DIR := $(abspath $(dir ${THIS_MAKEFILE_PATH}))
 INSTALL_PREFIX := ${BUILD_TOP_DIR}/install
-VERSION_STRING := 0.9.2
+VERSION_STRING := 0.9.3
 BRANCH := master
 
 all: source rpm

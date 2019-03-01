@@ -17,7 +17,7 @@ Prerequisites
 
   - cmake (cmake3 on RHEL7)
   - ninja (ninja-build on RHEL7)
-  - gcc 5.1 or above (devtoolset-4 on RHEL7)
+  - gcc 5.1 or above (devtoolset-8 on RHEL7)
 
 Repository
 ==========
@@ -36,7 +36,7 @@ First, modify package version and add changelog.
 
 Then, create it.
 
-    $ scl enable devtoolset-4 bash
+    $ scl enable devtoolset-8 bash
     $ make
     $ ls RPMS/x86_64
     ...

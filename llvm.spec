@@ -84,8 +84,10 @@ make DEST=%{buildroot}/opt/nec/nosupport/llvm-%{version} installall
 /opt/nec/nosupport/llvm-%{version}/share/*
 
 %changelog
-* Wed Feb 28 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.3-1
+* Fri Mar 01 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.3-1
 - Update package information
+- Change to use devtoolset-8 again since RHEL/CentOS has c++ library version
+  problem anyway
 
 * Wed Feb 27 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.2-1
 - Change to use devtoolset-4 instead of devtoolset-8 since latter cause

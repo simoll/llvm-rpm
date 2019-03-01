@@ -13,15 +13,11 @@ SOURCES/llvm-ve-${VERSION_STRING}.tar.gz:
 	mkdir -p SOURCES
 	tar -czf SOURCES/llvm-ve-${VERSION_STRING}.tar.gz \
 	  llvm-ve-${VERSION_STRING}
+	rm -rf llvm-ve-${VERSION_STRING}
 
-# Force to update source code
-update: FORCE
-	BRANCH=gitea DIR=llvm-ve-${VERSION_STRING} ./update-source.sh
-	mkdir -p SOURCES
-	tar -czf SOURCES/llvm-ve-${VERSION_STRING}.tar.gz \
-	  llvm-ve-${VERSION_STRING}
+rpm: RPMS/x86_64/llvm-ve-${VERSION_STRING}-1.el7.centos.x86_64.rpm
 
-rpm:
+RPMS/x86_64/llvm-ve-${VERSION_STRING}-1.el7.centos.x86_64.rpm:
 	rpmbuild -bb --define "_topdir ${BUILD_TOP_DIR}" \
 	  --define "version ${VERSION_STRING}" \
 	  --define "buildroot ${INSTALL_PREFIX}" \

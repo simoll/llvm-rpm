@@ -1,4 +1,4 @@
-Name:		llvm-ve
+Name:		llvm-ve-%{version}
 Version:	%{version}
 Release:	1%{?dist}
 Summary:	The Low Level Virtual Machine (LLVM) for NEC SX-Aurora VE
@@ -17,6 +17,10 @@ BuildRequires:	binutils gcc-c++ cmake3 ninja-build
 Requires:	binutils-ve glibc-ve glibc-ve-devel kernel-headers-ve
 # Llvm for VE also requires shared libraries on host
 Requires:       libgcc glibc libstdc++
+
+# We use name with version information to not to be removed old version
+# by yum, but this package is a llvm-ve package, so define it here.
+Provides:       llvm-ve = %{version}
 
 # Force to not compress binary files since it modifies object files
 # and converts elf header from VE to x86.
@@ -62,7 +66,7 @@ Includes
  - libcunwind library (for libc++abi)
  - openmp library (OpenMP)
 %prep
-%setup -q
+%setup -q -n llvm-ve-%{version}
 
 %build
 # Multi-process build is not supported yet.
@@ -77,11 +81,7 @@ make DEST=%{buildroot}/opt/nec/nosupport/llvm-%{version} installall
 %files
 %doc
 %defattr(-,root,root,-)
-/opt/nec/nosupport/llvm-%{version}/bin/*
-/opt/nec/nosupport/llvm-%{version}/include/*
-/opt/nec/nosupport/llvm-%{version}/lib/*
-/opt/nec/nosupport/llvm-%{version}/libexec/*
-/opt/nec/nosupport/llvm-%{version}/share/*
+/opt/nec/nosupport/llvm-%{version}/*
 
 %changelog
 * Fri Mar 01 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.3-1

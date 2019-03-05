@@ -1,8 +1,14 @@
 #!/bin/sh
 
-# Use github branch by default
+# Use llvm-dev master branch by default
 case x"$BRANCH" in
-x) BRANCH=github;;
+x) BRANCH=master;;
+*) ;;
+esac
+
+# Use llvm develop branch by default
+case x"$LLVM_BRANCH" in
+x) LLVM_BRANCH=develop;;
 *) ;;
 esac
 
@@ -52,11 +58,11 @@ function clone_or_update() {
   if [ -d $dir ]; then
       cd $dir
       update
-      make shallow-update
+      make shallow-update BRANCH=$LLVM_BRANCH
   else
       git clone $repo -b $BRANCH $OPT $dir
       cd $dir
-      make shallow
+      make shallow BRANCH=$LLVM_BRANCH
   fi
 }
 

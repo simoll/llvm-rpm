@@ -29,7 +29,7 @@ Clone repository by following command.
 Create an RPM package
 =====================
 
-First, modify package version and add changelog.
+First, modify package version, branch/tag, and add changelog.
 
     $ vi Makefile
     $ vi llvm.spec

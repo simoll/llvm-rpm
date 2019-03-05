@@ -2,6 +2,9 @@ THIS_MAKEFILE_PATH = $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_TOP_DIR = $(abspath $(dir ${THIS_MAKEFILE_PATH}))
 INSTALL_PREFIX = ${BUILD_TOP_DIR}/install
 VERSION_STRING = 0.9.3
+RELEASE_STRING = 1
+DIST_STRING = .el7.centos
+RPM_FILE = llvm-ve-${VERSION_STRING}-${RELEASE_STRING}${DIST_STRING}.x86_64.rpm
 LLVM_BRANCH = develop
 
 all: source rpm
@@ -16,11 +19,13 @@ SOURCES/llvm-ve-${VERSION_STRING}.tar.gz:
 	  llvm-ve-${VERSION_STRING}
 	rm -rf llvm-ve-${VERSION_STRING}
 
-rpm: RPMS/x86_64/llvm-ve-${VERSION_STRING}-1.el7.centos.x86_64.rpm
+rpm: RPMS/x86_64/${RPM_FILE}
 
-RPMS/x86_64/llvm-ve-${VERSION_STRING}-1.el7.centos.x86_64.rpm:
+RPMS/x86_64/${RPM_FILE}:
 	rpmbuild -bb --define "_topdir ${BUILD_TOP_DIR}" \
 	  --define "version ${VERSION_STRING}" \
+	  --define "release ${RELEASE_STRING}" \
+	  --define "dist ${DIST_STRING}" \
 	  --define "buildroot ${INSTALL_PREFIX}" \
 	  ${BUILD_TOP_DIR}/llvm.spec
 

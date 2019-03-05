@@ -1,6 +1,6 @@
 Name:		llvm-ve-%{version}
 Version:	%{version}
-Release:	1%{?dist}
+Release:	%{release}%{?dist}
 Summary:	The Low Level Virtual Machine (LLVM) for NEC SX-Aurora VE
 
 Group:		Development/Libraries
@@ -20,13 +20,20 @@ Requires:       libgcc glibc libstdc++
 
 # We use name with version information to not to be removed old version
 # by yum, but this package is a llvm-ve package, so define it here.
-Provides:       llvm-ve = %{version}
+Provides:       llvm-ve = %{version}-%{release}
 
 # Force to not compress binary files since it modifies object files
 # and converts elf header from VE to x86.
 %global __os_install_post %{nil}
 
+# Force to not use version information since it is included
+# name already.
+%global _build_name_fmt    %%{ARCH}/%%{NAME}-%%{RELEASE}.%%{ARCH}.rpm
+
 # FIXME: we need to support stripping and debug information for VE
+# Temporary disable generating debug package since host's rpmbuild
+# doesn't support rpm packaging for VE.  It shows errors on VE
+# binaries.
 %define debug_package %{nil}
 
 %description

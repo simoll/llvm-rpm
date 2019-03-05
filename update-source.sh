@@ -28,11 +28,11 @@ esac
 
 function update() {
   # 1. Fetch target $BRANCH
-  # 2. Changed local $BRANCH to specify remote $BRANCH
-  #    - Add -u option (update-head-ok) to update current branch
-  #    - This shows errors if local $BRANCH is not ok to fast-forward rebase
-  git fetch origin $OPT && \
-    git fetch origin $BRANCH:$BRANCH $OPT $FOPT -u
+  git fetch origin $OPT
+
+  # 2. Changed current branch to $BRANCH
+  #    - This shows errors if local $BRANCH has conflicts
+  git checkout $BRANCH
 
   # 3. Change current branch to $BRANCH if current branch is not dirty
   id=`git describe --always --abbrev=0 --match "NOT A TAG" --dirty="-dirty"`
@@ -42,7 +42,6 @@ function update() {
     echo Please commit or stash them.
     exit 1;;
   esac
-  git checkout $BRANCH
   git reset --hard origin/$BRANCH
 }
 

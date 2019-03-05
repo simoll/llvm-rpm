@@ -91,6 +91,10 @@ make DEST=%{buildroot}/opt/nec/nosupport/llvm-%{version} installall
 /opt/nec/nosupport/llvm-%{version}/*
 
 %changelog
+* Tue Mar 05 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.4-1
+- Fix sext_inreg to i1 problem
+- Compiled using github_release_20190305 tag source code
+
 * Fri Mar 01 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.3-1
 - Update package information
 - Change to use devtoolset-8 again since RHEL/CentOS has c++ library version

@@ -1,11 +1,11 @@
 THIS_MAKEFILE_PATH = $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_TOP_DIR = $(abspath $(dir ${THIS_MAKEFILE_PATH}))
 INSTALL_PREFIX = ${BUILD_TOP_DIR}/install
-VERSION_STRING = 0.9.4
+VERSION_STRING = 0.9.5
 RELEASE_STRING = 1
 DIST_STRING = .el7.centos
 RPM_FILE = llvm-ve-${VERSION_STRING}-${RELEASE_STRING}${DIST_STRING}.x86_64.rpm
-LLVM_BRANCH = github_release_20190305
+LLVM_BRANCH = github_release_20190315
 
 all: source rpm
 

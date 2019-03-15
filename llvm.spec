@@ -91,6 +91,10 @@ make DEST=%{buildroot}/opt/nec/nosupport/llvm-%{version} installall
 /opt/nec/nosupport/llvm-%{version}/*
 
 %changelog
+* Fri Mar 15 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.5-1
+- Fix combining ADD to OR problem.
+- Compiled using github_release_20190315 tag source code
+
 * Tue Mar 05 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.4-1
 - Fix sext_inreg to i1 problem
 - Compiled using github_release_20190305 tag source code

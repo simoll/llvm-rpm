@@ -91,6 +91,10 @@ make DEST=%{buildroot}/opt/nec/nosupport/llvm-%{version} installall
 /opt/nec/nosupport/llvm-%{version}/*
 
 %changelog
+* Wed Mar 20 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.6-1
+- Roll back the last merge from upstream
+- Compiled using develop2 tag source code
+
 * Fri Mar 15 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.5-1
 - Fix combining ADD to OR problem.
 - Compiled using github_release_20190315 tag source code

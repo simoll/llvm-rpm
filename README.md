@@ -1,3 +1,9 @@
+```
+% tar cf llvm-rpm/SOURCES/llvm-ve-1.0.0-1.0.0.tar --xform='s%local%llvm-ve-1.0.0-1.0.0/opt/nec/nosupport/llvm-ve-1.0.0%' local/
+% rpmbuild -bb SPECS/llvm-ve-1.0.0.spec --define "_topdir `pwd`"
+```
+
+
 Scripts to create an RPM package of LLVM for VE with libraries
 ==============================================================
 

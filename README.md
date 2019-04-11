@@ -1,3 +1,9 @@
+- RPMファイルはErickさんのリポジトリに入れてもらう方針．ライセンス問題が解決したらやる
+- バージョンの変え方（案）．一番左は適当に変える．真ん中は全世界に公開時に上げる．最後は社内向けに更新したとき．
+
+install済みのディレクトリからrpmを作る方法．localにインストールされているとする
+
+
 ```
 % tar cf llvm-rpm/SOURCES/llvm-ve-1.0.0-1.0.0.tar --xform='s%local%llvm-ve-1.0.0-1.0.0/opt/nec/nosupport/llvm-ve-1.0.0%' local/
 % rpmbuild -bb SPECS/llvm-ve-1.0.0.spec --define "_topdir `pwd`"

@@ -1,14 +1,21 @@
+Building RPM package from intalled LLVM
+=======================================
+
+You are in llvm-rpm directory, and you have installed the llvm into `../local`,
+and its version is 1.0.1, create SPECS/llvm-ve-1.0.1.spec and then run
+
+```
+% ./mktar.sh ../local 1.0.1
+% rpmbuild -bb SPECS/llvm-ve-1.0.1.spec --define "_topdir `pwd`"
+```
+
+Memo
+
 - RPMファイルはErickさんのリポジトリに入れてもらう方針．ライセンス問題が解決したらやる
 - バージョンの変え方（案）．一番左は適当に変える．真ん中は全世界に公開時に上げる．最後は社内向けに更新したとき．
 - パッケージ名にバージョン番号を入れて複数入れられるようにする
 - インストール先は/opt/nec/nosupport/llvm-ve-1.0.0
 
-install済みのディレクトリからrpmを作る方法．localにインストールされているとする
-
-```
-% tar cf llvm-rpm/SOURCES/llvm-ve-1.0.0-1.0.0.tar --xform='s%local%llvm-ve-1.0.0-1.0.0/opt/nec/nosupport/llvm-ve-1.0.0%' local/
-% rpmbuild -bb SPECS/llvm-ve-1.0.0.spec --define "_topdir `pwd`"
-```
 
 
 Scripts to create an RPM package of LLVM for VE with libraries

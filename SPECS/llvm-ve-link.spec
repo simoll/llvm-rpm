@@ -6,12 +6,11 @@
 %define        __os_install_post %{_dbpath}/brp-compress
 
 Summary: LLVM for VectorEngine of SX-Aurora TSUBASA 
-Name: llvm-ve-1.0.1
+Name: llvm-ve-link
 Version: 1.0.1
 Release: 1
 License: GPL+
 Group: Development/Tools
-SOURCE0 : %{name}-%{version}.tar
 URL: https://github.com/SXAuroraTSUBASAResearch/llvm
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
@@ -20,35 +19,23 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 %{summary}
 
 %prep
-%setup -q
+#%setup -q
 
 %build
 # Empty section.
 
 %install
 rm -rf %{buildroot}
-mkdir -p  %{buildroot}
-
-# in builddir
-cp -a * %{buildroot}
+mkdir -p  %{buildroot}/opt/nec/nosupport
+ln -s /opt/nec/nosupport/llvm-ve-%{version} %{buildroot}/opt/nec/nosupport/llvm-ve
 
 %clean
-rm -rf %{buildroot}
+#rm -rf %{buildroot}
 
 
 %files
 %defattr(-,root,root,-)
-%dir /opt/nec/nosupport/%{name}
-%dir /opt/nec/nosupport/%{name}/bin
-%dir /opt/nec/nosupport/%{name}/include
-%dir /opt/nec/nosupport/%{name}/lib
-%dir /opt/nec/nosupport/%{name}/libexec
-%dir /opt/nec/nosupport/%{name}/share
-/opt/nec/nosupport/%{name}/bin/*
-/opt/nec/nosupport/%{name}/include/*
-/opt/nec/nosupport/%{name}/lib/*
-/opt/nec/nosupport/%{name}/libexec/*
-/opt/nec/nosupport/%{name}/share/*
+/opt/nec/nosupport/llvm-ve
 
 %changelog
 

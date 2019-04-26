@@ -91,6 +91,9 @@ make DEST=%{buildroot}/opt/nec/nosupport/llvm-%{version} installall
 /opt/nec/nosupport/llvm-%{version}/*
 
 %changelog
+* Fri Apr 27 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.7-1
+- Change to use develop branch source code to build rpm for internal uses
+
 * Wed Mar 20 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.6-1
 - Roll back the last merge from upstream
 - Compiled using develop2 tag source code

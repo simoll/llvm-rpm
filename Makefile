@@ -1,18 +1,20 @@
 THIS_MAKEFILE_PATH = $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_TOP_DIR = $(abspath $(dir ${THIS_MAKEFILE_PATH}))
 INSTALL_PREFIX = ${BUILD_TOP_DIR}/install
-VERSION_STRING = 0.9.6
+VERSION_STRING = 0.9.7
 RELEASE_STRING = 1
 DIST_STRING = .el7.centos
 RPM_FILE = llvm-ve-${VERSION_STRING}-${RELEASE_STRING}${DIST_STRING}.x86_64.rpm
-LLVM_BRANCH = develop2
+LLVM_BRANCH = develop
+LLVM_DEV_BRANCH = develop
 
 all: source rpm
 
 source: SOURCES/llvm-ve-${VERSION_STRING}.tar.gz
 
 SOURCES/llvm-ve-${VERSION_STRING}.tar.gz:
-	LLVM_BRANCH=${LLVM_BRANCH} DIR=llvm-ve-${VERSION_STRING} \
+	LLVM_BRANCH=${LLVM_BRANCH} BRANCH=${LLVM_DEV_BRANCH} \
+	    DIR=llvm-ve-${VERSION_STRING} \
 	    ./update-source.sh
 	mkdir -p SOURCES
 	tar -czf SOURCES/llvm-ve-${VERSION_STRING}.tar.gz \

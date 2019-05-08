@@ -86,9 +86,18 @@ make DEST=%{buildroot}/opt/nec/nosupport/llvm-%{version}
 make DEST=%{buildroot}/opt/nec/nosupport/llvm-%{version} installall
 
 %files
-%doc
 %defattr(-,root,root,-)
-/opt/nec/nosupport/llvm-%{version}/*
+%dir /opt/nec/nosupport/llvm-%{version}
+%dir /opt/nec/nosupport/llvm-%{version}/bin
+%dir /opt/nec/nosupport/llvm-%{version}/include
+%dir /opt/nec/nosupport/llvm-%{version}/lib
+%dir /opt/nec/nosupport/llvm-%{version}/libexec
+%dir /opt/nec/nosupport/llvm-%{version}/share
+/opt/nec/nosupport/llvm-%{version}/bin/*
+/opt/nec/nosupport/llvm-%{version}/include/*
+/opt/nec/nosupport/llvm-%{version}/lib/*
+/opt/nec/nosupport/llvm-%{version}/libexec/*
+/opt/nec/nosupport/llvm-%{version}/share/*
 
 %changelog
 * Wed May 08 2019 Kazushi (Jam) Marukawa <kaz-marukawa@xr.jp.nec.com> - 0.9.8-1

@@ -2,11 +2,13 @@ Building RPM package from intalled LLVM
 =======================================
 
 You are in llvm-rpm directory, and you have installed the llvm into `../local`,
-and its version is 1.0.1, create SPECS/llvm-ve-1.0.1.spec and then run
+and its version is 1.0.1, create SPECS/llvm-ve-1.0.1.spec and update
+SPECS/llvm-ve-link.spec and then run
 
 ```
 % ./mktar.sh ../local 1.0.1
 % rpmbuild -bb SPECS/llvm-ve-1.0.1.spec --define "_topdir `pwd`"
+% rpmbuild -bb SPECS/llvm-ve-link.spec --define "_topdir `pwd`"
 ```
 
 Memo

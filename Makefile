@@ -1,35 +1,36 @@
 THIS_MAKEFILE_PATH = $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_TOP_DIR = $(abspath $(dir ${THIS_MAKEFILE_PATH}))
+
 INSTALL_PREFIX = ${BUILD_TOP_DIR}/install
-VERSION_STRING = 0.9.8
-RELEASE_STRING = 1
+NAME		= llvm-ve-1.1.0
+VERSION_STRING	= 1.1.0
+RELEASE_STRING 	= 1
 DIST_STRING = .el7.centos
-RPM_FILE = llvm-ve-${VERSION_STRING}-${RELEASE_STRING}${DIST_STRING}.x86_64.rpm
 LLVM_BRANCH = develop
 LLVM_DEV_BRANCH = develop
+TAR=SOURCES/${NAME}-${VERSION_STRING}.tar
+
+DIR=${NAME}-${VERSION_STRING}
 
 all: source rpm
 
-source: SOURCES/llvm-ve-${VERSION_STRING}.tar.gz
+source: ${TAR}
 
-SOURCES/llvm-ve-${VERSION_STRING}.tar.gz:
+${TAR}:
 	LLVM_BRANCH=${LLVM_BRANCH} BRANCH=${LLVM_DEV_BRANCH} \
-	    DIR=llvm-ve-${VERSION_STRING} \
-	    ./update-source.sh
+	    DIR=${DIR} ./update-source.sh
 	mkdir -p SOURCES
-	tar -czf SOURCES/llvm-ve-${VERSION_STRING}.tar.gz \
-	  llvm-ve-${VERSION_STRING}
-	rm -rf llvm-ve-${VERSION_STRING}
+	tar --exclude .git -cf $@ ${DIR}
+	rm -rf ${DIR}
 
-rpm: RPMS/x86_64/${RPM_FILE}
-
-RPMS/x86_64/${RPM_FILE}:
-	rpmbuild -bb --define "_topdir ${BUILD_TOP_DIR}" \
+rpm:
+	rpmbuild -ba --define "_topdir ${BUILD_TOP_DIR}" \
+	  --define "name ${NAME}" \
 	  --define "version ${VERSION_STRING}" \
 	  --define "release ${RELEASE_STRING}" \
 	  --define "dist ${DIST_STRING}" \
 	  --define "buildroot ${INSTALL_PREFIX}" \
-	  ${BUILD_TOP_DIR}/llvm.spec
+	  ${BUILD_TOP_DIR}/SPECS/${NAME}.spec
 
 clean:
 	rm -rf ${INSTALL_PREFIX}

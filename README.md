@@ -1,5 +1,7 @@
-Building RPM package from intalled LLVM
-=======================================
+Scripts to create an RPM package of LLVM for VE with libraries
+==============================================================
+
+## Building RPM package from intalled LLVM
 
 You are in llvm-rpm directory, and you have installed the llvm into `../local`,
 and its version is 1.0.1, create SPECS/llvm-ve-1.0.1.spec and update
@@ -19,9 +21,7 @@ Memo
 - インストール先は/opt/nec/nosupport/llvm-ve-1.0.0
 
 
-
-Scripts to create an RPM package of LLVM for VE with libraries
-==============================================================
+## Building RPM package from source
 
 This repository contains Makefile and scripts to create an RPM package
 of LLVM for NEC SX-Aurora VE with libraries.  Following libraries

@@ -7,7 +7,7 @@
 
 Summary: LLVM for VectorEngine of SX-Aurora TSUBASA 
 Name: llvm-ve-link
-Version: 1.0.2
+Version: 1.1.0
 Release: 1
 License: GPL+
 Group: Development/Tools

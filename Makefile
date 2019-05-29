@@ -2,13 +2,14 @@ THIS_MAKEFILE_PATH = $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_TOP_DIR = $(abspath $(dir ${THIS_MAKEFILE_PATH}))
 
 INSTALL_PREFIX = ${BUILD_TOP_DIR}/install
-NAME		= llvm-ve-1.1.0
 VERSION_STRING	= 1.1.0
+NAME		= llvm-ve-${VERSION_STRING}
 RELEASE_STRING 	= 1
 DIST_STRING = .el7.centos
 LLVM_BRANCH = develop
 LLVM_DEV_BRANCH = develop
 TAR=SOURCES/${NAME}-${VERSION_STRING}.tar
+INSTALL_DIR=../local
 
 DIR=${NAME}-${VERSION_STRING}
 
@@ -31,6 +32,19 @@ rpm:
 	  --define "dist ${DIST_STRING}" \
 	  --define "buildroot ${INSTALL_PREFIX}" \
 	  ${BUILD_TOP_DIR}/SPECS/${NAME}.spec
+
+local-rpm:
+	./mktar.sh ${INSTALL_DIR} ${VERSION_STRING}
+	rpmbuild -bb SPECS/llvm-ve-local.spec \
+		--define "_topdir `pwd`" \
+		--define "name ${NAME}" \
+		--define "version ${VERSION_STRING}" \
+		--define "release ${RELEASE_STRING}"
+	rpmbuild -bb SPECS/llvm-ve-link.spec \
+		--define "_topdir `pwd`" \
+		--define "version ${VERSION_STRING}" \
+		--define "release ${RELEASE_STRING}"
+
 
 clean:
 	rm -rf ${INSTALL_PREFIX}

@@ -16,8 +16,8 @@ path=$(readlink -f $dir)
 dir=$(basename $path)
 cur=$(pwd)
 
-echo $path
-echo $dir
-echo $ver
+#echo $path
+#echo $dir
+#echo $ver
 
 (cd ${path}/..  && tar cf ${cur}/SOURCES/llvm-ve-${ver}-${ver}.tar --xform="s%${dir}%llvm-ve-${ver}-${ver}/opt/nec/nosupport/llvm-ve-${ver}%" ${dir})

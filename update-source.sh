@@ -68,5 +68,5 @@ function clone_or_update() {
 
 # Update source codes under $DIR directory.
 #REPO=git@socsv218.svp.cl.nec.co.jp:ve-llvm/llvm-dev.git
-REPO=https://github.com/SXAuroraTSUBASAResearch/llvm-dev
+REPO=https://github.com/sx-aurora-dev/llvm-dev
 clone_or_update $REPO $DIR

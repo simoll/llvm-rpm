@@ -3,11 +3,11 @@ BUILD_TOP_DIR = $(abspath $(dir ${THIS_MAKEFILE_PATH}))
 
 INSTALL_PREFIX = ${BUILD_TOP_DIR}/install
 VERSION_STRING	= 1.1.0
-NAME		= llvm-ve-${VERSION_STRING}
+NAME		= llvm-ve-rv-${VERSION_STRING}
 RELEASE_STRING 	= 1
 DIST_STRING = .el7.centos
 LLVM_BRANCH = develop
-LLVM_DEV_BRANCH = develop
+LLVM_DEV_BRANCH = develop_cdl
 TAR=SOURCES/${NAME}-${VERSION_STRING}.tar
 INSTALL_DIR=../local
 

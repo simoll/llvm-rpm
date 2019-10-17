@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-WGET="wget --connect-timeout=5"
+WGET="wget --connect-timeout=5 --tries=3"
+RPM=rpm
 RPM_CPIO=rpm2cpio
 CPIO=cpio
 
@@ -22,17 +23,20 @@ echo "     Installer for local LLVM-VE ${LLVM_VE_VERSION}"
 echo "---------------------------------------------"
 
 # Download
-if ! rpm -K --nosignature ${RPM_FILE} | grep -q OK -; then
+if ! ${RPM} --quiet -K --nosignature ${RPM_FILE} 2> /dev/null | grep -q OK -; then
   echo "Downloading release ${RELEASE_SUFFIX} to ${RPM_FILE}"
-  ${WGET} -o ${RPM_PATH} ${RELEASE_URL}
+  if ! ${WGET} -o ${RPM_PATH} ${RELEASE_URL}; then
+    echo "Could not download ${RELEASE_URL}!"
+    exit 1
+  fi
 else
   echo "Using archive ${RPM_PATH}"
 fi
 
 # Verify integrity
-if ! rpm -K --nosignature ${RPM_FILE} | grep -q OK -; then
+if ! ${RPM} --quiet -K --nosignature ${RPM_FILE} 2> /dev/null | grep -q OK -; then
   echo "Corrupted archive (${RPM_FILE})!"
-  exit 1;
+  exit 1
 fi
 
 echo "Verified RPM checksum!"

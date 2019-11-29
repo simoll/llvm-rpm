@@ -58,11 +58,11 @@ function clone_or_update() {
   if [ -d $dir ]; then
       cd $dir
       update
-      make shallow-update BRANCH=$LLVM_BRANCH
+      make shallow-update REPOS=${REPOS} BRANCH=$LLVM_BRANCH
   else
       git clone $repo -b $BRANCH $OPT $dir
       cd $dir
-      make shallow BRANCH=$LLVM_BRANCH
+      make shallow REPOS=${REPOS} BRANCH=$LLVM_BRANCH
   fi
 }
 

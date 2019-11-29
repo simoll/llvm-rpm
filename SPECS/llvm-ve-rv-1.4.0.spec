@@ -7,7 +7,7 @@ Group:		Development/Libraries
 License:	Apache License v2.0 with LLVM Exceptions
 URL:		https://github.com/sx-aurora-dev/llvm
 Source0:	%{name}-%{version}.tar
-Prefix:         /opt/nec/ve/LLVM/%{name}
+Prefix:         /opt/nec/nosupport/%{name}
 
 # Building llvm requires gcc-5.1 or above, but it is sometime provided
 # as devtoolset-X, so we simply says gcc-c++ here.

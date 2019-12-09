@@ -14,7 +14,7 @@ Prefix:         /opt/nec/nosupport/%{name}
 BuildRequires:	binutils gcc-c++ cmake3 ninja-build
 
 # Llvm for VE requires binutils, glibc, and header files for VE.
-Requires:	binutils-ve glibc-ve glibc-ve-devel kernel-headers-ve
+Requires:	binutils-ve glibc-ve glibc-ve-devel kheaders-ve
 # Llvm for VE also requires shared libraries on host
 Requires:       libgcc glibc libstdc++
 

@@ -7,7 +7,7 @@ CPIO=cpio
 
 LLVM_VE_VERSION=1.4.0
 LLVM_VE_RC=1
-RELEASE_TAG=hpce/release_1.4
+RELEASE_TAG=llvm-ve-rv-v${LLVM_VE_VERSION}
 
 RELEASE_BASE_URL=https://github.com/sx-aurora-dev/llvm-project/releases/download/
 RPM_FILE=llvm-ve-rv-${LLVM_VE_VERSION}-${LLVM_VE_VERSION}-${LLVM_VE_RC}.x86_64.rpm
@@ -25,8 +25,9 @@ echo "---------------------------------------------"
 # Download
 if ! ${RPM} -K --nosignature ${RPM_PATH} 2> /dev/null | grep -s OK - > /dev/null; then
   echo "Downloading release ${RELEASE_SUFFIX} to ${RPM_PATH}"
-  if ! ${WGET} -o ${RPM_PATH} ${RELEASE_URL}; then
+  if ! ${WGET} -c -o wget.log -O ${RPM_PATH} ${RELEASE_URL}; then
     echo "Could not download ${RELEASE_URL}!"
+    echo "Wget log written to 'wget.log'"
     exit 1
   fi
 

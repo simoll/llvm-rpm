@@ -2,12 +2,12 @@ THIS_MAKEFILE_PATH = $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_TOP_DIR = $(abspath $(dir ${THIS_MAKEFILE_PATH}))
 
 INSTALL_PREFIX = ${BUILD_TOP_DIR}/install
-VERSION_STRING	= 1.4.0
+VERSION_STRING	= 1.5.0
 NAME		= llvm-ve-rv-${VERSION_STRING}
 RELEASE_STRING 	= 1
 DIST_STRING = .el7.centos
-LLVM_BRANCH = hpce/release_1.4
-LLVM_DEV_BRANCH = hpce/release_1.4
+LLVM_BRANCH = hpce/release_1.5
+LLVM_DEV_BRANCH = hpce/release_1.5
 TAR=SOURCES/${NAME}-${VERSION_STRING}.tar
 INSTALL_DIR=../local
 

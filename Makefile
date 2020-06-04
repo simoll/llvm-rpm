@@ -2,12 +2,13 @@ THIS_MAKEFILE_PATH = $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_TOP_DIR = $(abspath $(dir ${THIS_MAKEFILE_PATH}))
 
 INSTALL_PREFIX = ${BUILD_TOP_DIR}/install
-VERSION_STRING	= 1.5.0
+VERSION_STRING	= 1.6.0
 NAME		= llvm-ve-rv-${VERSION_STRING}
 RELEASE_STRING 	= 1
 DIST_STRING = .el7.centos
-LLVM_BRANCH = hpce/release_1.5
-LLVM_DEV_BRANCH = hpce/release_1.5
+LLVM_BRANCH = hpce/release_1.6
+LLVM_DEV_BRANCH = hpce/release_1.6
+SOTOC_DEFAULT_COMPILER = ncc
 TAR=SOURCES/${NAME}-${VERSION_STRING}.tar
 INSTALL_DIR=../local
 
@@ -41,6 +42,7 @@ rpm:
 	  --define "buildroot ${INSTALL_PREFIX}" \
 	  --define "repos ${REPOS}" \
 	  --define "branch ${LLVM_BRANCH}" \
+	  --define "sotoc_default ${SOTOC_DEFAULT_COMPILER}" \
 	  ${BUILD_TOP_DIR}/SPECS/${NAME}.spec
 
 local-rpm:

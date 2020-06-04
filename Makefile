@@ -11,6 +11,7 @@ LLVM_DEV_BRANCH = hpce/release_1.6
 SOTOC_DEFAULT_COMPILER = ncc
 TAR=SOURCES/${NAME}-${VERSION_STRING}.tar
 INSTALL_DIR=../local
+BUILD_TYPE = Release
 
 DIR=${NAME}-${VERSION_STRING}
 
@@ -36,6 +37,7 @@ ${TAR}:
 rpm:
 	 QA_SKIP_BUILD_ROOT=1 rpmbuild -ba --define "_topdir ${BUILD_TOP_DIR}" \
 	  --define "name ${NAME}" \
+	  --define "build_type ${BUILD_TYPE}" \
 	  --define "version ${VERSION_STRING}" \
 	  --define "release ${RELEASE_STRING}" \
 	  --define "dist ${DIST_STRING}" \

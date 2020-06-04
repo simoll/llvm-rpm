@@ -43,8 +43,8 @@ Requires:       libgcc glibc libstdc++
 # Internal makefile performs "ninja -j8" (appropriate to our build machine).
 # Please modify it to increase processes.
 # make %{?_smp_mflags} DEST=%{buildroot}/opt/nec/ve/LLVM/llvm-ve-rv-%{version}
-make BRANCH=%{branch} DEST=%{buildroot}%{prefix} REPOS=%{repos} shallow
-make BRANCH=%{branch} DEST=%{buildroot}%{prefix} REPOS=%{repos} SOTOC_DEFAULT_COMPILER=%{sotoc_default}
+make BUILD_TYPE=%{build_type} BRANCH=%{branch} DEST=%{buildroot}%{prefix} REPOS=%{repos} shallow
+make BUILD_TYPE=%{build_type} BRANCH=%{branch} DEST=%{buildroot}%{prefix} REPOS=%{repos} SOTOC_DEFAULT_COMPILER=%{sotoc_default}
 
 %install
 make DEST=%{buildroot}%{prefix} LLVM_VE_PREFIX=%{prefix} REPOS=%{repos} installall

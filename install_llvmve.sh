@@ -5,7 +5,7 @@ RPM=rpm
 RPM_CPIO=rpm2cpio
 CPIO=cpio
 
-LLVM_VE_VERSION=1.4.0
+LLVM_VE_VERSION=1.6.0
 LLVM_VE_RC=1
 RELEASE_TAG=llvm-ve-rv-v${LLVM_VE_VERSION}
 
@@ -15,7 +15,7 @@ RELEASE_SUFFIX=${RELEASE_TAG}/${RPM_FILE}
 RELEASE_URL=${RELEASE_BASE_URL}/${RELEASE_SUFFIX}
 
 RPM_PATH=${PWD}/${RPM_FILE}
-RPM_INTERNAL_PREFIX="opt/nec/nosupport/llvm-ve-rv-${LLVM_VE_VERSION}"
+RPM_INTERNAL_PREFIX="usr/local/ve/llvm-ve-rv-${LLVM_VE_VERSION}"
 
 # Info
 echo "---------------------------------------------"

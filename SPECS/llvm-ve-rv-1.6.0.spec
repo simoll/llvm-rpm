@@ -47,7 +47,7 @@ make BUILD_TYPE=%{build_type} BRANCH=%{branch} DEST=%{buildroot}%{prefix} REPOS=
 make BUILD_TYPE=%{build_type} BRANCH=%{branch} DEST=%{buildroot}%{prefix} REPOS=%{repos} SOTOC_DEFAULT_COMPILER=%{sotoc_default}
 
 %install
-make DEST=%{buildroot}%{prefix} LLVM_VE_PREFIX=%{prefix} REPOS=%{repos} installall
+make BUILD_TYPE=%{build_type} DEST=%{buildroot}%{prefix} LLVM_VE_PREFIX=%{prefix} REPOS=%{repos} SOTOC_DEFAULT_COMPILER=%{sotoc_default} installall
 
 %files
 %defattr(-,root,root,-)

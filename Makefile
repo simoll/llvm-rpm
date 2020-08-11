@@ -35,7 +35,7 @@ ${TAR}:
 	rm -rf ${DIR}
 
 rpm:
-	 QA_SKIP_BUILD_ROOT=1 rpmbuild -ba --define "_topdir ${BUILD_TOP_DIR}" \
+	QA_SKIP_BUILD_ROOT=1 rpmbuild -ba --define "_topdir ${BUILD_TOP_DIR}" \
 	  --define "name ${NAME}" \
 	  --define "build_type ${BUILD_TYPE}" \
 	  --define "version ${VERSION_STRING}" \

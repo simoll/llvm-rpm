@@ -1,8 +1,9 @@
 #!/bin/sh
 
 # Use llvm-dev master branch by default
-case x"$BRANCH" in
-x) BRANCH=master;;
+case x"${DEV_BRANCH}" in
+x) echo "Define DEVBRANCH"
+   exit 1;;
 *) ;;
 esac
 
@@ -34,11 +35,11 @@ esac
 
 function update() {
   # 1. Fetch target $BRANCH
-  git fetch origin $OPT
+  git fetch origin ${OPT}
 
   # 2. Changed current branch to $BRANCH
   #    - This shows errors if local $BRANCH has conflicts
-  git checkout $BRANCH
+  git checkout ${BRANCH}
 
   # 3. Change current branch to $BRANCH if current branch is not dirty
   id=`git describe --always --abbrev=0 --match "NOT A TAG" --dirty="-dirty"`
@@ -48,7 +49,7 @@ function update() {
     echo Please commit or stash them.
     exit 1;;
   esac
-  git reset --hard origin/$BRANCH
+  git reset --hard origin/${DEV_BRANCH}
 }
 
 function clone_or_update() {
@@ -58,11 +59,11 @@ function clone_or_update() {
   if [ -d $dir ]; then
       cd $dir
       update
-      make update REPOS=${REPOS} BRANCH=$LLVM_BRANCH BUILD_TYPE=Release
+      make update REPOS=${REPOS} BRANCH=${LLVM_BRANCH} BUILD_TYPE=Release
   else
-      git clone $repo -b $BRANCH $OPT $dir
+      git clone $repo -b ${DEV_BRANCH} ${OPT} $dir
       cd $dir
-      make clone REPOS=${REPOS} BRANCH=$LLVM_BRANCH BUILD_TYPE=Release
+      make clone REPOS=${REPOS} BRANCH=${LLVM_BRANCH} BUILD_TYPE=Release
   fi
 }
 

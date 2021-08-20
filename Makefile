@@ -2,12 +2,12 @@ THIS_MAKEFILE_PATH = $(abspath $(lastword $(MAKEFILE_LIST)))
 BUILD_TOP_DIR = $(abspath $(dir ${THIS_MAKEFILE_PATH}))
 
 INSTALL_PREFIX = ${BUILD_TOP_DIR}/install
-VERSION_STRING	= 1.8.0
+VERSION_STRING	?= $(error "Define VERSION_STRING")
 NAME		= llvm-ve-rv-${VERSION_STRING}
 RELEASE_STRING 	= 1
 DIST_STRING = .el7.centos
-LLVM_BRANCH = hpce/release_1.8
-LLVM_DEV_BRANCH = hpce/release_1.8
+LLVM_BRANCH ?= $(error "Define LLVM_BRANCH")
+LLVM_DEV_BRANCH ?= $(error "Define LLVM_DEV_BRANCH")
 SOTOC_DEFAULT_COMPILER = ncc
 TAR=SOURCES/${NAME}-${VERSION_STRING}.tar
 INSTALL_DIR=../local
@@ -16,7 +16,7 @@ BUILD_TYPE = Release
 DIR=${NAME}-${VERSION_STRING}
 
 # Update source codes under $DIR directory.
-REPOS=~/repos
+REPOS=$(error "Define REPOS")
 
 # llvm-dev repository
 DEVREPO=${REPOS}/llvm-dev.git
@@ -45,7 +45,7 @@ rpm:
 	  --define "repos ${REPOS}" \
 	  --define "branch ${LLVM_BRANCH}" \
 	  --define "sotoc_default ${SOTOC_DEFAULT_COMPILER}" \
-	  ${BUILD_TOP_DIR}/SPECS/${NAME}.spec
+	  ${BUILD_TOP_DIR}/SPECS/llvm-ve-rv-rolling.spec
 
 local-rpm:
 	./mktar.sh ${INSTALL_DIR} ${VERSION_STRING}

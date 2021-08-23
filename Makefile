@@ -28,7 +28,7 @@ all: source rpm
 source: ${TAR}
 
 ${TAR}:
-	LLVM_BRANCH=${LLVM_BRANCH} BRANCH=${LLVM_DEV_BRANCH} \
+	LLVM_BRANCH=${LLVM_BRANCH} LLVM_DEV_BRANCH=${LLVM_DEV_BRANCH} \
 	    DIR=${DIR} DEVREPO=${DEVREPO} REPOS=${REPOS} ./update-source.sh
 	mkdir -p SOURCES
 	tar --exclude .git -cf $@ ${DIR}

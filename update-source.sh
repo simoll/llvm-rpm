@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Use llvm-dev master branch by default
-case x"${DEV_BRANCH}" in
-x) echo "Define DEVBRANCH"
+case x"${LLVM_DEV_BRANCH}" in
+x) echo "Define LLVM_DEV_BRANCH"
    exit 1;;
 *) ;;
 esac
@@ -49,7 +49,7 @@ function update() {
     echo Please commit or stash them.
     exit 1;;
   esac
-  git reset --hard origin/${DEV_BRANCH}
+  git reset --hard origin/${LLVM_DEV_BRANCH}
 }
 
 function clone_or_update() {
@@ -61,7 +61,7 @@ function clone_or_update() {
       update
       make update REPOS=${REPOS} BRANCH=${LLVM_BRANCH} BUILD_TYPE=Release
   else
-      git clone $repo -b ${DEV_BRANCH} ${OPT} $dir
+      git clone $repo -b ${LLVM_DEV_BRANCH} ${OPT} $dir
       cd $dir
       make clone REPOS=${REPOS} BRANCH=${LLVM_BRANCH} BUILD_TYPE=Release
   fi

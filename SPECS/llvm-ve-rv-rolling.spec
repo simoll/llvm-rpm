@@ -5,13 +5,13 @@ Release:	%{release}
 
 Group:		Development/Libraries
 License:	Apache License v2.0 with LLVM Exceptions
-URL:		https://github.com/sx-aurora-dev/llvm
+URL:		https://github.com/sx-aurora-dev/llvm-project
 Source0:	%{name}-%{version}.tar
 Prefix:         /usr/local/ve/%{name}
 
 # Building llvm requires gcc-5.1 or above, but it is sometime provided
 # as devtoolset-X, so we simply says gcc-c++ here.
-BuildRequires:	binutils gcc-c++ cmake3 ninja-build
+# BuildRequires:	binutils gcc-c++ cmake3 ninja-build
 
 # Llvm for VE requires binutils, glibc, and header files for VE.
 Requires:	binutils-ve glibc-ve glibc-ve-devel kheaders-ve
@@ -43,11 +43,20 @@ Requires:       libgcc glibc libstdc++
 # Internal makefile performs "ninja -j8" (appropriate to our build machine).
 # Please modify it to increase processes.
 # make %{?_smp_mflags} DEST=%{buildroot}/opt/nec/ve/LLVM/llvm-ve-rv-%{version}
-make BUILD_TYPE=%{build_type} BRANCH=%{branch} REPOS=%{repos} clone
-# make BUILD_TYPE=%{build_type} BRANCH=%{branch} DEST=%{buildroot}%{prefix} REPOS=%{repos} SOTOC_DEFAULT_COMPILER=%{sotoc_default} build
+
+# /usr/local/ve --> BUILDROOT/usr/local/ve
+# mkdir -p /usr/local/ve
+# mkdir -p %{buildroot}/usr/local
+# ln -s /usr/local/ve %{buildroot}/usr/local/ve
+
+make -f llvm-dev/ve-linux-steps.make BUILDROOT=%{build_dir} MONOREPO=%{monorepo_dir} BUILD_TYPE=%{build_type} PREFIX=%{prefix} SOTOC_DEFAULT_COMPILER=%{sotoc_default} build-llvm
 
 %install
-make BUILD_TYPE=%{build_type} INSTALL_PREFIX=%{buildroot}%{prefix} REPOS=%{repos} SOTOC_DEFAULT_COMPILER=%{sotoc_default} install
+make -f llvm-dev/ve-linux-steps.make BUILDROOT=%{build_dir} MONOREPO=%{monorepo_dir} BUILD_TYPE=%{build_type} PREFIX=%{prefix} SOTOC_DEFAULT_COMPILER=%{sotoc_default} install
+
+# Migrate to BUILDROOT to pass validation.
+mkdir -p %{buildroot}/usr/local/ve
+mv %{prefix} %{buildroot}/usr/local/ve/
 
 %files
 %defattr(-,root,root,-)

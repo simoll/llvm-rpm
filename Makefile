@@ -28,7 +28,7 @@ DEV_REPO=${REPOS}/llvm-dev.git
 LLVM_REPO=${REPOS}/llvm-project.git
 
 # Source branches.
-BRANCH ?= $(error "Define $BRANCH or LLVM_BRANCH and DEV_BRANCH")
+BRANCH ?= $(error "Define BRANCH or LLVM_BRANCH and DEV_BRANCH")
 LLVM_BRANCH ?= ${BRANCH}
 DEV_BRANCH ?= ${BRANCH}
 

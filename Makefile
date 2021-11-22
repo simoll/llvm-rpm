@@ -56,6 +56,8 @@ rpm:
 	  ${BUILD_TOP_DIR}/SPECS/llvm-ve-rv-rolling.spec
 
 clean:
-	rm -rf ${INSTALL_PREFIX}
+	rm -rf ${BUILD_DIR}
+	rm -rf ${SOURCES_DIR}
+	rm -rf RPMS
 
 .PHONY: rpm source

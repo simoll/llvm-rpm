@@ -49,10 +49,10 @@ Requires:       libgcc glibc libstdc++
 # mkdir -p %{buildroot}/usr/local
 # ln -s /usr/local/ve %{buildroot}/usr/local/ve
 
-make -f llvm-dev/ve-linux-steps.make BUILDROOT=%{build_dir} MONOREPO=%{monorepo_dir} BUILD_TYPE=%{build_type} PREFIX=%{prefix} SOTOC_DEFAULT_COMPILER=%{sotoc_default} build-llvm
+make -f llvm-dev/ve-linux-steps.make BUILDROOT=%{build_dir} MONOREPO=%{monorepo_dir} BUILD_TYPE=%{build_type} PREFIX=%{prefix} SOTOC_DEFAULT_COMPILER=%{sotoc_default} LLVM_BUILD_DYLIB=On LLVM_BUILD_SOLIBS=Off LLVM_BUILD_TYPE=Release build-llvm
 
 %install
-make -f llvm-dev/ve-linux-steps.make BUILDROOT=%{build_dir} MONOREPO=%{monorepo_dir} BUILD_TYPE=%{build_type} PREFIX=%{prefix} SOTOC_DEFAULT_COMPILER=%{sotoc_default} install
+make -f llvm-dev/ve-linux-steps.make BUILDROOT=%{build_dir} MONOREPO=%{monorepo_dir} BUILD_TYPE=%{build_type} PREFIX=%{prefix} SOTOC_DEFAULT_COMPILER=%{sotoc_default} LLVM_BUILD_DYLIB=On LLVM_BUILD_SOLIBS=Off LLVM_BUILD_TYPE=Release install
 
 # Migrate to BUILDROOT to pass validation.
 mkdir -p %{buildroot}/usr/local/ve

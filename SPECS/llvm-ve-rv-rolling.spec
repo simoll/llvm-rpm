@@ -1,7 +1,7 @@
 Summary:        LLVM for VectorEngine of SX-Aurora TSUBASA 
 Name:		%{name}
 Version:	%{version}
-Release:	%{release}
+Release:	%{release}%{?dist}
 
 Group:		Development/Libraries
 License:	Apache License v2.0 with LLVM Exceptions

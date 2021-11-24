@@ -4,7 +4,6 @@ BUILD_TOP_DIR = $(abspath $(dir ${THIS_MAKEFILE_PATH}))
 VERSION_STRING	?= $(error "Define VERSION_STRING")
 NAME		= llvm-ve-rv-${VERSION_STRING}
 RELEASE_STRING 	= 1
-DIST_STRING = .el7.centos
 SOTOC_DEFAULT_COMPILER = ncc
 INSTALL_DIR=../local
 BUILD_TYPE = Release
@@ -49,7 +48,6 @@ rpm:
 	  --define "build_type ${BUILD_TYPE}" \
 	  --define "version ${VERSION_STRING}" \
 	  --define "release ${RELEASE_STRING}" \
-	  --define "dist ${DIST_STRING}" \
 	  --define "monorepo_dir ${BUILD_MONOREPO}" \
 	  --define "build_dir ${BUILD_DIR}" \
 	  --define "sotoc_default ${SOTOC_DEFAULT_COMPILER}" \
@@ -58,6 +56,6 @@ rpm:
 clean:
 	rm -rf ${BUILD_DIR}
 	rm -rf ${SOURCES_DIR}
-	rm -rf RPMS
+	rm -rf RPMS SRPMS
 
 .PHONY: rpm source
